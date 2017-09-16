@@ -35,15 +35,15 @@ class User extends Authenticatable
     ];
 
     public function comments(){
-      return $this->hasMany('App\Models\Comment');
+      return $this->hasMany('App\Comment');
     }
 
     public function role(){
-      return $this->belongsTo('App\Models\Role');
+      return $this->belongsTo('App\Role');
     }
 
     public function companies(){
-      return $this->hasMany('App\Models\Company');
+      return $this->hasMany('App\Company');
     }
 
     public function tasks(){
