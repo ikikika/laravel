@@ -34,10 +34,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function tasks(){
-      return $this->hasMany('App\Models\Task');
-    }
-
     public function comments(){
       return $this->hasMany('App\Models\Comment');
     }
@@ -48,6 +44,14 @@ class User extends Authenticatable
 
     public function companies(){
       return $this->hasMany('App\Models\Company');
+    }
+
+    public function tasks(){
+      return $this->belongsToMany('App\Task');
+    }
+
+    public function projects(){
+      return $this->belongsToMany('App\Project');
     }
 
 
