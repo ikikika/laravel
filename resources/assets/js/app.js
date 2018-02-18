@@ -18,5 +18,11 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    mounted(){
+      Echo.channel('pizza-tracker')
+      .listen('OrderStatusChange', (e) => {
+        console.log('omgggg realtime update!')
+      });
+    }
 });
