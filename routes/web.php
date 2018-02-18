@@ -16,5 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::middleware('auth')->group(function () {
+    Route::get('/orders', 'UserOrdersController@index')->name('user.orders');
+    Route::get('/orders/create', 'UserOrdersController@create')->name('user.orders.create');
+    Route::post('/orders', 'UserOrdersController@store')->name('user.orders.store');
+    Route::get('/orders/{order}', 'UserOrdersController@show')->name('user.orders.show');
+});
+
 
 Route::get('/home', 'HomeController@index')->name('home');
