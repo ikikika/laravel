@@ -1,7 +1,13 @@
 <template>
+  <div>
     <div class="progress">
-      <progressbar now="50" type="success" striped animated></progressbar>
+      <progressbar :now="progress" type="success" striped animated></progressbar>
     </div>
+
+    <div class="order-status">
+      <strong>Order Status</strong> {{ statusNew }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -11,8 +17,18 @@
         components: {
           progressbar
         },
+        props: [ 'status', 'initial', 'order_id'],
+        data() {
+          return {
+            statusNew: this.status,
+            progress: this.initial
+          }
+        },
         mounted() {
-            console.log('Component mounted.')
+          Echo.channel('pizza-tracker' + this.order_id)
+          .listen('OrderStatusChange', (order) => {
+            console.log('realtime pizza tracker')
+          });
         }
     }
 </script>

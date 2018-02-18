@@ -14,9 +14,9 @@
                         </div>
                     @endif
 
-                    <order-progress></order-progress>
+                    <order-progress status="{{ $order->status->name }}" initial="{{ $order->status->percent }}" order_id="{{ $order->id }}"></order-progress>
 
-                    
+
 
 
 

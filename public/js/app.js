@@ -52036,16 +52036,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        progressbar: __WEBPACK_IMPORTED_MODULE_0_vue_strap__["progressbar"]
-    },
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
+  components: {
+    progressbar: __WEBPACK_IMPORTED_MODULE_0_vue_strap__["progressbar"]
+  },
+  props: ['status', 'initial', 'order_id'],
+  data: function data() {
+    return {
+      statusNew: this.status,
+      progress: this.initial
+    };
+  },
+  mounted: function mounted() {
+    Echo.channel('pizza-tracker' + this.order_id).listen('OrderStatusChange', function (order) {
+      console.log('realtime pizza tracer');
+    });
+  }
 });
 
 /***/ }),
@@ -62013,16 +62028,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "progress" },
-    [
-      _c("progressbar", {
-        attrs: { now: "50", type: "success", striped: "", animated: "" }
-      })
-    ],
-    1
-  )
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "progress" },
+      [
+        _c("progressbar", {
+          attrs: {
+            now: _vm.progress,
+            type: "success",
+            striped: "",
+            animated: ""
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "order-status" }, [
+      _c("strong", [_vm._v("Order Status")]),
+      _vm._v(" " + _vm._s(_vm.statusNew) + "\n  ")
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
