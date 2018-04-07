@@ -21,13 +21,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('articles', 'ArticleController@index');
 
 //List single article
-Route::get('articles/{id}', 'ArticleController@show');
+Route::get('article/{id}', 'ArticleController@show');
 
 //Create new article
-Route::post('articles', 'ArticleController@store');
+Route::post('article', 'ArticleController@store');
 
 //update article
-Route::put('articles', 'ArticleController@store');
+Route::put('article', 'ArticleController@store');
 
 //delete article
-Route::delete('articles', 'ArticleController@destroy');
+Route::delete('article/{id}', 'ArticleController@destroy');
