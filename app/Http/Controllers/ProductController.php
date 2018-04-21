@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Project;
+use App\Model\Product;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,7 +44,7 @@ class ProjectController extends Controller
      * @param  \App\Model\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Product $product)
     {
         //
     }
@@ -55,7 +55,7 @@ class ProjectController extends Controller
      * @param  \App\Model\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Product $product)
     {
         //
     }
@@ -67,7 +67,7 @@ class ProjectController extends Controller
      * @param  \App\Model\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Product $product)
     {
         //
     }
@@ -78,7 +78,7 @@ class ProjectController extends Controller
      * @param  \App\Model\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Product $product)
     {
         //
     }
