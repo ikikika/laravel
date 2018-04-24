@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReviewResource;
 use App\Model\Product;
 use App\Model\Review;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class ReviewController extends Controller
     {
 
         //return Review::all();
-        return $product->reviews;
+        return ReviewResource::collection($product->reviews);
     }
 
     /**
