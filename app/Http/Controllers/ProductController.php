@@ -7,6 +7,7 @@ use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
 use App\Model\Product;
 use Illuminate\Http\Request;
+Use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
@@ -49,7 +50,7 @@ class ProductController extends Controller
         $product->save();
         return response([
             'data' => new ProductResource($product)
-        ], 201);;
+        ], Response::HTTP_CREATED);;
     }
 
     /**
