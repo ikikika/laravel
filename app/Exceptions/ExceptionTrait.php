@@ -9,16 +9,26 @@ trait ExceptionTrait
 {
 	public function apiException($request,$e)
 	{
-    if( $e instanceof ModelNotFoundException ){
+    if( $this->isModel($e) ){
       return response()->json([
           'errors' => 'Product Model not found'
       ],Response::HTTP_NOT_FOUND);
     }
 
-    if( $e instanceof NotFoundHttpException ){
+    if( $this->isHttp($e) ){
       return response()->json([
           'errors' => 'Incorrect route'
       ],Response::HTTP_NOT_FOUND);
     }
 	}
+
+  protected function isModel($e)
+	{
+		return $e instanceof ModelNotFoundException;
+	}
+	protected function isHttp($e)
+	{
+		return $e instanceof NotFoundHttpException;
+	}
+	
 }
