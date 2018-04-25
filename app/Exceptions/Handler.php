@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 Use Symfony\Component\HttpFoundation\Response;
 
@@ -54,8 +55,16 @@ class Handler extends ExceptionHandler
               'errors' => 'Product Model not found'
           ],Response::HTTP_NOT_FOUND);
         }
+
+        if( $exception instanceof NotFoundHttpException ){
+          return response()->json([
+              'errors' => 'Incorrect route'
+          ],Response::HTTP_NOT_FOUND);
+        }
       }
 
-        return parent::render($request, $exception);
+
+
+      return parent::render($request, $exception);
     }
 }
