@@ -9,11 +9,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+      $this->middleware('auth:api')->except('index', 'show');
+    }
+
     public function index()
     {
         //return Product::all();
@@ -38,7 +39,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "something";
     }
 
     /**
