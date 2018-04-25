@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+Use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -49,7 +50,9 @@ class Handler extends ExceptionHandler
     {
       if( $request->expectsJson() ){
         if( $exception instanceof ModelNotFoundException ){
-          return response('Model not found', 404);
+          return response()->json([
+              'errors' => 'Product Model not found'
+          ],Response::HTTP_NOT_FOUND);
         }
       }
 
