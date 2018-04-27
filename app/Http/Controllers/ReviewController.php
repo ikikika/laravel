@@ -93,6 +93,9 @@ class ReviewController extends Controller
      */
     public function destroy(Product $product, Review $review)
     {
-        return $review;
+        $review->delete();
+        return response([
+          null
+        ], Response::HTTP_NO_CONTENT);
     }
 }
