@@ -91,8 +91,8 @@ class ReviewController extends Controller
      * @param  \App\Model\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Product $product, Review $review)
     {
-        //
+        return $review;
     }
 }
