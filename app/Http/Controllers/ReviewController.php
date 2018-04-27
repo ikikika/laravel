@@ -79,7 +79,10 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Product $product, Review $review)
     {
-        return $review;
+        $review->update( $request->all() );
+        return response([
+          'data' => new reviewResource($review)
+        ], Response::HTTP_CREATED);
     }
 
     /**
