@@ -23,6 +23,7 @@ class Article extends JsonResource
         ];
     }
 
+    // add more info to output
     public function with ($request){
       return [
         'version' =>'1.0.0',
