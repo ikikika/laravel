@@ -2,7 +2,7 @@
   <div>
     <h2>Articles</h2>
 
-    <form class="mb-3">
+    <form class="mb-3" @submit.prevent="addArticle">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Title" v-model="article.title">
         <textarea type="text" class="form-control" placeholder="Body" v-model="article.body"></textarea>
@@ -95,6 +95,28 @@
             this.fetchArticles();
           })
           .catch(err => console.log(err));
+        }
+      },
+      addArticle(){
+        if( this.edit == false ){
+          //add
+          fetch('api/article', {
+            method: 'post',
+            body: JSON.stringify(this.article),
+            headers: {
+              'content-type': 'application/json'
+            }
+          })
+          .then( res => res.json() )
+          .then( data => {
+            this.article.title = '';
+            this.article.body = '';
+            alert('Article added');
+            this.fetchArticles();
+          })
+          .catch(err => console.log(err));
+        } else {
+          // update
         }
       }
     }
