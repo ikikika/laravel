@@ -47424,6 +47424,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -47471,6 +47475,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
 
       this.pagination = pagination;
+    },
+    deleteArticle: function deleteArticle(id) {
+      var _this2 = this;
+
+      if (confirm('Are you sure?')) {
+        fetch('api/article/' + id, {
+          method: 'delete'
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          alert('Article removed');
+          _this2.fetchArticles();
+        }).catch(function (err) {
+          return console.log(err);
+        });
+      }
     }
   }
 });
@@ -47561,7 +47581,22 @@ var render = function() {
           [
             _c("h3", [_vm._v(_vm._s(article.title))]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(article.body))])
+            _c("p", [_vm._v(_vm._s(article.body))]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger",
+                on: {
+                  click: function($event) {
+                    _vm.deleteArticle(article.id)
+                  }
+                }
+              },
+              [_vm._v("\n      Delete\n    ")]
+            )
           ]
         )
       })
