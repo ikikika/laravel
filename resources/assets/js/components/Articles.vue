@@ -35,6 +35,9 @@
       <h3>{{ article.title }}</h3>
       <p>{{ article.body }}</p>
       <hr>
+      <button class="btn btn-warning mb-2" @click="editArticle(article)">
+        Edit
+      </button>
       <button class="btn btn-danger" @click="deleteArticle(article.id)">
         Delete
       </button>
@@ -118,6 +121,14 @@
         } else {
           // update
         }
+      },
+      editArticle(article){
+        this.edit = true;
+        //right side is article being passed in
+        this.article.id = article.id;
+        this.article.article_id = article.id;
+        this.article.title = article.title;
+        this.article.body = article.body;
       }
     }
   }

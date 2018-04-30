@@ -47437,6 +47437,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -47525,6 +47528,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         // update
       }
+    },
+    editArticle: function editArticle(article) {
+      this.edit = true;
+      //right side is article being passed in
+      this.article.id = article.id;
+      this.article.article_id = article.id;
+      this.article.title = article.title;
+      this.article.body = article.body;
     }
   }
 });
@@ -47687,6 +47698,19 @@ var render = function() {
             _c("p", [_vm._v(_vm._s(article.body))]),
             _vm._v(" "),
             _c("hr"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning mb-2",
+                on: {
+                  click: function($event) {
+                    _vm.editArticle(article)
+                  }
+                }
+              },
+              [_vm._v("\n      Edit\n    ")]
+            ),
             _vm._v(" "),
             _c(
               "button",
