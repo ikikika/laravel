@@ -47527,6 +47527,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       } else {
         // update
+        fetch('api/article', {
+          method: 'put',
+          body: JSON.stringify(this.article), //the data passed is set in editArticle(article)
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this3.article.title = '';
+          _this3.article.body = '';
+          alert('Article updated');
+          _this3.fetchArticles();
+        }).catch(function (err) {
+          return console.log(err);
+        });
       }
     },
     editArticle: function editArticle(article) {

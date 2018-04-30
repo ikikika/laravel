@@ -120,6 +120,21 @@
           .catch(err => console.log(err));
         } else {
           // update
+          fetch('api/article', {
+            method: 'put',
+            body: JSON.stringify(this.article), //the data passed is set in editArticle(article)
+            headers: {
+              'content-type': 'application/json'
+            }
+          })
+          .then( res => res.json() )
+          .then( data => {
+            this.article.title = '';
+            this.article.body = '';
+            alert('Article updated');
+            this.fetchArticles();
+          })
+          .catch(err => console.log(err));
         }
       },
       editArticle(article){
