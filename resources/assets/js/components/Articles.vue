@@ -1,6 +1,15 @@
 <template>
   <div>
     <h2>Articles</h2>
+
+    <form class="mb-3">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Title" v-model="article.title">
+        <textarea type="text" class="form-control" placeholder="Body" v-model="article.body"></textarea>
+        <button type="submit" class="btn btn-light btn-block">Save</button>
+      </div>
+    </form>
+
     <nav aria-label="Page navigation example">
       <ul class="pagination">
          <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item">  <!--disable if no previous page url -->
