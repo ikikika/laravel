@@ -6,17 +6,20 @@
 
 <template>
   <div id="app">
-    <navbar>j</navbar>
+    <navbar></navbar>
+    <login></login>
   </div>
 </template>
 
 <script>
 
 import Navbar from './components/Navbar.vue'
+import Login from './components/auth/Login.vue'
 
 export default {
     components: {
-      'navbar': Navbar
+      'navbar': Navbar,
+      'login': Login
     }
 }
 
