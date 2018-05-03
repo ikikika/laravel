@@ -8,6 +8,7 @@
   <div id="app">
     <navbar></navbar>
     <login></login>
+    <register></register>
   </div>
 </template>
 
@@ -15,11 +16,13 @@
 
 import Navbar from './components/Navbar.vue'
 import Login from './components/auth/Login.vue'
+import Register from './components/auth/Register.vue'
 
 export default {
     components: {
       'navbar': Navbar,
-      'login': Login
+      'login': Login,
+      'register': Register
     }
 }
 

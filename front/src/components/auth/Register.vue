@@ -6,7 +6,8 @@
         <div class="row">
             <div class="col-sm-offset-4 col-sm-4">
                 <div class="form-login">
-                <h4>Welcome back.</h4>
+                <input type="text" class="form-control input-sm chat-input" placeholder="full name" v-model="name"/>
+                <br>
                 <input type="email" class="form-control input-sm chat-input" placeholder="email" v-model="email"/>
                 </br>
                 <input type="password" class="form-control input-sm chat-input" placeholder="password" v-model="password"/>
@@ -28,6 +29,7 @@
   export default{
     data () {
       return {
+        name: '',
         email: '',
         password: ''
       }
