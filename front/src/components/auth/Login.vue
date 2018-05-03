@@ -7,9 +7,9 @@
             <div class="col-md-offset-5 col-md-3">
                 <div class="form-login">
                 <h4>Welcome back.</h4>
-                <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
+                <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" v-model="email"/>
                 </br>
-                <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
+                <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" v-model="password"/>
                 </br>
                 <div class="wrapper">
                 <span class="group-btn">
@@ -21,11 +21,18 @@
             </div>
         </div>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
-
+  export default{
+    data () {
+      return {
+        email: '',
+        password: ''
+      }
+    }
+  }
 </script>
 
 <style>
