@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col-sm-offset-4 col-sm-4">
                 <div class="form-login">
+                <h4>Register</h4>
                 <input type="text" class="form-control input-sm chat-input" placeholder="full name" v-model="name"/>
                 <br>
                 <input type="email" class="form-control input-sm chat-input" placeholder="email" v-model="email"/>
