@@ -8,10 +8,26 @@ export default function (Vue){
 
     //get token
     getToken: () => {
+      var token = localStorage.getItem('token')
+      var expiration = localStorage.getItem('expiration')
 
+      if( !token || !expiration ){
+        return null;
+      }
+
+      if( Date.now() > parseInt(expiration) ){
+        this.destroyToken();
+        return null;
+      } else {
+        return token;
+      }
     },
 
     //destroy token
+    destroyToken: () => {
+      localStorage.removeItem('token')
+      localStorage.removeItem('expiration')
+    },
 
     // isAuthenticated
     isAuthenticated: () => {

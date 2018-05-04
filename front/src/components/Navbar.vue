@@ -18,6 +18,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Link</a></li>
+          <li><button class="btn btn-primary" @click="logout">Logout</button></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -25,7 +26,14 @@
 </template>
 
 <script>
-
+export default{
+  methods: {
+    logout(){
+      this.$auth.destroyToken()
+      console.log('logged out');
+    }
+  }
+}
 </script>
 
 <style>
