@@ -46,7 +46,8 @@
 
         this.$http.post("http://localhost:8000/oauth/token/", data)
           .then( response => {
-            console.log(response);
+            //console.log(response);
+            this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
           })
       }
 
