@@ -13,7 +13,7 @@
                 </br>
                 <div class="wrapper">
                 <span class="group-btn">
-                    <a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>
+                    <button @click="test" class="btn btn-primary btn-md" >login <i class="fa fa-sign-in"></i></button>
                 </span>
                 </div>
                 </div>
@@ -30,6 +30,16 @@
       return {
         email: '',
         password: ''
+      }
+    },
+    //send request to api endpoint and see if we get response or not
+    methods: {
+      test(){
+        //using get from vue-resource
+        this.$http.get("http://localhost:8000/api/test")
+          .then(function(data){
+            console.log(data)
+          })
       }
     }
   }
