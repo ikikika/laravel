@@ -13,7 +13,7 @@
                 </br>
                 <div class="wrapper">
                 <span class="group-btn">
-                    <button @click="test" class="btn btn-primary btn-md" >login <i class="fa fa-sign-in"></i></button>
+                    <button @click="login" class="btn btn-primary btn-md" >login <i class="fa fa-sign-in"></i></button>
                 </span>
                 </div>
                 </div>
@@ -34,13 +34,29 @@
     },
     //send request to api endpoint and see if we get response or not
     methods: {
-      test(){
-        //using get from vue-resource
-        this.$http.get("http://localhost:8000/api/test")
-          .then(function(data){
-            console.log(data)
+      login(){
+        var data = {
+          grant_type: 'password',
+          client_id: 2,
+          client_secret: 'VCYheHifwjtNeTzabL4f5xRFqTDEOjvF0CaBZnxD',
+          username: this.email,
+          password: this.password
+        }
+
+
+        this.$http.post("http://localhost:8000/oauth/token/", data)
+          .then( response => {
+            console.log(response);
           })
       }
+
+      // test(){
+      //   //using get from vue-resource
+      //   this.$http.get("http://localhost:8000/api/test")
+      //     .then(function(data){
+      //       console.log(data)
+      //     })
+      // }
     }
   }
 </script>
