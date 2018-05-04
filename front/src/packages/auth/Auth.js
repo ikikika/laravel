@@ -2,8 +2,8 @@ export default function (Vue){
   Vue.auth = {
     //set token
     setToken: (token, expiration) => {
-      localStorage.setItem('token', token);
-      localStorage.setItem('expiration', token);
+      localStorage.setItem('token', token)
+      localStorage.setItem('expiration', expiration)
     },
 
     //get token
@@ -22,4 +22,12 @@ export default function (Vue){
       }
     }
   }
+
+  Object.defineProperties(Vue.prototype, {
+    $auth: {
+      get: () => {
+        return Vue.auth
+      }
+    }
+  })
 }
