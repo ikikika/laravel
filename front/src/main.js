@@ -8,7 +8,9 @@ import Auth from './packages/auth/Auth.js'
 
 Vue.use(VueResource) //install vue-resource first amd configure like this
 Vue.use(Auth) //register auth package globally
-console.log(Vue.auth.getToken(), Vue.auth.isAuthenticated())
+
+Vue.http.options.root = "http://localhost:8000"
+
 Router.beforeEach(
 
   (to, from, next) => { //to is where we want to go, from is current route, next is function that muct be called no matter what

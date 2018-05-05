@@ -26,5 +26,6 @@ Route::get('/test', function(){
   ]);
 });
 
-
-Route::resource('products', 'ProductsController');
+Route::group( ['middleware' => 'auth:api'], function(){
+    Route::resource('products', 'ProductsController');
+});
