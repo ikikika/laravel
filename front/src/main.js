@@ -10,6 +10,7 @@ Vue.use(VueResource) //install vue-resource first amd configure like this
 Vue.use(Auth) //register auth package globally
 
 Vue.http.options.root = "http://localhost:8000"
+Vue.http.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken()
 
 Router.beforeEach(
 
