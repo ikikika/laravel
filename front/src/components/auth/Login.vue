@@ -49,6 +49,7 @@
             //console.log(response);
             this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
             console.log('logged in')
+            this.$router.push("/feed")
           })
       }
 

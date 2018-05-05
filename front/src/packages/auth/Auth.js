@@ -12,12 +12,12 @@ export default function (Vue){
       var expiration = localStorage.getItem('expiration')
 
       if( !token || !expiration ){
-        return null;
+        return null
       }
 
       if( Date.now() > parseInt(expiration) ){
         this.destroyToken();
-        return null;
+        return null
       } else {
         return token;
       }
@@ -31,10 +31,10 @@ export default function (Vue){
 
     // isAuthenticated
     isAuthenticated() {
-      if( this.getToken ){
-        return true;
+      if( this.getToken() ){
+        return true
       } else {
-        return false;
+        return false
       }
     }
   }

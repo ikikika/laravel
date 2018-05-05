@@ -31,6 +31,7 @@ export default{
     logout(){
       this.$auth.destroyToken()
       console.log('logged out');
+      this.$router.push("/login")
     }
   }
 }

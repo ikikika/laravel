@@ -8,16 +8,27 @@ import Auth from './packages/auth/Auth.js'
 
 Vue.use(VueResource) //install vue-resource first amd configure like this
 Vue.use(Auth) //register auth package globally
-
+console.log(Vue.auth.getToken(), Vue.auth.isAuthenticated())
 Router.beforeEach(
+
   (to, from, next) => { //to is where we want to go, from is current route, next is function that muct be called no matter what
     if( to.matched.some(record => record.meta.forVisitors) ){
-      if( Vue.auth.isAuthenticated ){
+      if( Vue.auth.isAuthenticated() ){
         next({
           path: '/feed'
         })
       } else { next() }
-    } else { next() }
+    }
+
+    else if( to.matched.some(record => record.meta.forAuth) ){
+      if( !Vue.auth.isAuthenticated() ){
+        next({
+          path: '/login'
+        })
+      } else { next() }
+    }
+
+    else { next() }
   }
 )
 
