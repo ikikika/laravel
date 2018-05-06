@@ -32,7 +32,9 @@ const router = new VueRouter({
     }
   ],
   //specify active class
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+
+  mode: 'history'
 })
 
 export default router
