@@ -52,12 +52,20 @@ export default{
   },
   created(){
     this.isAuth = this.$auth.isAuthenticated()
+    this.setAuthUser()
   },
   methods: {
     logout(){
       this.$auth.destroyToken()
       console.log('logged out');
       this.$router.push("/login")
+    },
+    setAuthUser(){
+      this.$http.get('api/user')
+        .then(response=>{
+          this.$auth.setAuthUser(response.body)
+          console.log(this.$auth.getAuthUser());
+        })
     }
   }
 }

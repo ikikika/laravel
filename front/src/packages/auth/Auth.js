@@ -1,4 +1,6 @@
 export default function (Vue){
+  let authUser = {}
+
   Vue.auth = {
     //set token
     setToken(token, expiration) {
@@ -36,6 +38,14 @@ export default function (Vue){
       } else {
         return false
       }
+    },
+
+    setAuthUser( data ){
+      authUser = data
+    },
+
+    getAuthUser(){
+      return authUser
     }
   }
 
