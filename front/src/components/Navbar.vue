@@ -30,9 +30,11 @@
               <a>Feed</a>
             </router-link>
 
-            <router-link tag="li" to="/logout" v-if="isAuth">
-              <a>Logout</a>
-            </router-link>
+            <li v-if="isAuth">
+              <a href="#"  @click="logout">Logout</a>
+            </li>
+
+
 
           <!-- <li><button class="btn btn-primary" @click="logout">Logout</button></li> -->
         </ul>
