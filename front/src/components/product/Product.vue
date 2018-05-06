@@ -23,7 +23,7 @@
 
 <script>
   export default{
-    props: ['product']
+    props: ['product', 'authUser']
   }
 </script>
 

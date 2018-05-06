@@ -1,7 +1,10 @@
 <template>
   <div class="row">
       <!-- attr product is product defined in props, property item is from v-for loop, include colon to indicate item is an object, not a string-->
-      <my-product v-for="item in products" :product="item">
+      <my-product
+        v-for="item in products"
+        :authUser="authUser"
+        :product="item">
       </my-product>
   </div>
 </template>
@@ -13,6 +16,12 @@
     data(){
       return{
         products: []
+      }
+    },
+
+    computed: {
+      authUser(){
+        return this.$auth.getAuthUser()
       }
     },
 
