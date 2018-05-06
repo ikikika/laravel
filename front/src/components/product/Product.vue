@@ -15,6 +15,13 @@
             Buy
           </a>
         </p>
+        <hr>
+        <p >
+          <a href="#" class="btn btn-danger"
+            v-if="product.user_id == authUser.id" @click="deleteProduct">
+            Delete
+          </a>
+        </p>
       </div>
     </div>
   </div>
@@ -22,8 +29,31 @@
 </template>
 
 <script>
+  import swal from 'sweetalert'
+
   export default{
-    props: ['product', 'authUser']
+    props: ['product', 'authUser'],
+
+    methods: {
+      deleteProduct(){
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, you will not be able to recover this imaginary file!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal("Poof! Your imaginary file has been deleted!", {
+              icon: "success",
+            });
+          } else {
+            swal("Your imaginary file is safe!");
+          }
+        });
+      }
+    }
   }
 </script>
 
