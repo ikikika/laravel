@@ -64,7 +64,7 @@ export default{
       this.$http.get('api/user')
         .then(response=>{
           this.$auth.setAuthUser(response.body)
-          console.log(this.$auth.getAuthUser());
+          //console.log(this.$auth.getAuthUser());
         })
     }
   }

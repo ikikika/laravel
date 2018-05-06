@@ -12,9 +12,20 @@ class ProductsController extends Controller
       return Product::orderBy('created_at', 'desc')->get();
     }
 
-    public function store( Request $request){
+    public function store( Request $request)
+    {
 
       $product = Product::create($request->all());
       return $product;
+    }
+
+    public function destroy($id)
+    {
+      try{
+        Product::destroy($id);
+        return response([], 204);
+      } catch( \Exception $e ){
+        return response( ['Problem deleting'], 500 );
+      }
     }
 }

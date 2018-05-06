@@ -45,12 +45,17 @@
         })
         .then((willDelete) => {
           if (willDelete) {
-            swal("Poof! Your imaginary file has been deleted!", {
-              icon: "success",
-            });
+            this.$http.delete('api/products/'+this.product.id)
+              .then(response=>{
+                console.log(response);
+                swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                  });
+              })
           } else {
             swal("Your imaginary file is safe!");
           }
+
         });
       }
     }
