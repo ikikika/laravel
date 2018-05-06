@@ -30,6 +30,10 @@
               <a>Feed</a>
             </router-link>
 
+            <router-link tag="li" to="/products/create" v-if="isAuth">
+              <a>Create Product</a>
+            </router-link>
+
             <li v-if="isAuth">
               <a href="#"  @click="logout">Logout</a>
             </li>
