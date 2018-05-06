@@ -3,7 +3,7 @@
     <div class="thumbnail">
       <img src="https://canadatwoway.com/wp-content/uploads/2017/11/No_Image_Available.jpg" alt="">
       <div class="caption">
-        {{ product.user_id }}
+
         <h3>{{ product.name }}</h3>
         <p>{{ product.price }}</p>
         <hr>
@@ -17,8 +17,10 @@
         </p>
         <hr>
         <p >
+          <!--  trigger an event using $emit -->
           <a href="#" class="btn btn-danger"
-            v-if="product.user_id == authUser.id" @click="deleteProduct">
+            v-if="product.user_id == authUser.id"
+            @click="$emit('delete-product')">
             Delete
           </a>
         </p>
@@ -29,36 +31,8 @@
 </template>
 
 <script>
-  import swal from 'sweetalert'
-
   export default{
-    props: ['product', 'authUser'],
-
-    methods: {
-      deleteProduct(){
-        swal({
-          title: "Are you sure?",
-          text: "Once deleted, you will not be able to recover this imaginary file!",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            this.$http.delete('api/products/'+this.product.id)
-              .then(response=>{
-                console.log(response);
-                swal("Poof! Your imaginary file has been deleted!", {
-                    icon: "success",
-                  });
-              })
-          } else {
-            swal("Your imaginary file is safe!");
-          }
-
-        });
-      }
-    }
+    props: ['product', 'authUser']
   }
 </script>
 

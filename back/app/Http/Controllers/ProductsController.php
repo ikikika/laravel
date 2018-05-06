@@ -9,7 +9,7 @@ class ProductsController extends Controller
 {
     public function index()
     {
-      return Product::orderBy('created_at', 'desc')->get();
+      return Product::orderBy('id', 'desc')->get();
     }
 
     public function store( Request $request)
