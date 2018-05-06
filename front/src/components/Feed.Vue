@@ -1,27 +1,17 @@
 <template>
   <div>
     <h1>Feed</h1>
-    <ul>
-      <li v-for="product in products">
-        {{ product.name }} | {{ product.price }}
-      </li>
-    </ul>
+    <my-products></my-products>
   </div>
 
 </template>
 
 <script>
+  import Products from './product/Products.vue'
+
   export default{
-    data(){
-      return{
-        products: []
-      }
-    },
-    created(){ //lifecycle hook. make http call and initialise pdt in products: []
-      this.$http.get("api/products") //no slash at front of uri
-        .then(response=>{
-          this.products = response.body
-        })
+    components: {
+      'my-products': Products
     }
   }
 
