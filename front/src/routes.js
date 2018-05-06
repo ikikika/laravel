@@ -30,7 +30,9 @@ const router = new VueRouter({
         forAuth: true
       }
     }
-  ]
+  ],
+  //specify active class
+  linkActiveClass: 'active'
 })
 
 export default router

@@ -17,7 +17,15 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
+
+            <router-link tag="li" to="/login">
+              <a>Login</a>
+            </router-link>
+
+            <router-link tag="li" to="/register">
+              <a>Register</a>
+            </router-link>
+
           <li><button class="btn btn-primary" @click="logout">Logout</button></li>
         </ul>
       </div><!-- /.navbar-collapse -->
