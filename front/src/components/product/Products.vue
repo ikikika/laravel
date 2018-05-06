@@ -20,7 +20,7 @@
       'my-product': Product
     },
 
-    created(){ /*lifecycle hook. make http call and initialise pdt in products*/
+    created(){ /*lifecycle hook. make http call and initialise item in products*/
       this.$http.get("api/products") //no slash at front of uri
         .then(response=>{
           this.products = response.body

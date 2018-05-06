@@ -18,15 +18,23 @@
 
         <ul class="nav navbar-nav navbar-right">
 
-            <router-link tag="li" to="/login">
+            <router-link tag="li" to="/login" v-if="!isAuth">
               <a>Login</a>
             </router-link>
 
-            <router-link tag="li" to="/register">
+            <router-link tag="li" to="/register" v-if="!isAuth">
               <a>Register</a>
             </router-link>
 
-          <li><button class="btn btn-primary" @click="logout">Logout</button></li>
+            <router-link tag="li" to="/feed" v-if="isAuth">
+              <a>Feed</a>
+            </router-link>
+
+            <router-link tag="li" to="/logout" v-if="isAuth">
+              <a>Logout</a>
+            </router-link>
+
+          <!-- <li><button class="btn btn-primary" @click="logout">Logout</button></li> -->
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -35,6 +43,14 @@
 
 <script>
 export default{
+  data(){
+    return {
+      isAuth: null
+    }
+  },
+  created(){
+    this.isAuth = this.$auth.isAuthenticated()
+  },
   methods: {
     logout(){
       this.$auth.destroyToken()
