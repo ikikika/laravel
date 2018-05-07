@@ -22,7 +22,11 @@ class ProductsController extends Controller
 
     public function show($id)
     {
-      return response()->json(Product::find($id));
+      $product = Product::find($id);
+      if( count($product) > 0 ){
+        return response()->json($product);
+      }
+      return response()->json(['error'=>'Product not found'], 404);
     }
 
     public function update(Request $request, $id)

@@ -45,6 +45,9 @@
           .then(response=>{
             this.product = response.body
           })
+          .catch(response=>{
+            swal(response.status.toString(), response.body.error, "error")
+          })
       },
       update(){
         this.$http.put("api/products/"+this.$route.params.product, this.product)
