@@ -10,10 +10,17 @@ Vue.use(VueResource) //install vue-resource first amd configure like this
 Vue.use(Auth) //register auth package globally
 
 Vue.http.options.root = "http://localhost:8000"
-//Vue.http.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken()
+Vue.http.headers.common['Authorization'] = 'Bearer ' + Vue.auth.getToken()
 Vue.http.interceptors.push((request, next) => {
-    request.headers.set('Authorization', 'Bearer ' + Vue.auth.getToken())
-    next()
+    next(response=>{
+      if( response.status == 404 ){
+          swal(response.status.toString(), response.body.error, "error")
+      } else if( response.status == 500  ){
+          swal(response.status.toString(), "error with our servers", "error")
+      }
+    })
+    // request.headers.set('Authorization', 'Bearer ' + Vue.auth.getToken())
+    // next()
 })
 
 Router.beforeEach(
