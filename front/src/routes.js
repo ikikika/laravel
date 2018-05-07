@@ -36,6 +36,13 @@ const router = new VueRouter({
       meta: {
         forAuth: true
       }
+    },
+    {
+      path: '/products/:product/edit',
+      component: require('./components/product/Edit.vue').default,
+      meta: {
+        forAuth: true
+      }
     }
   ],
   //specify active class
