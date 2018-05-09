@@ -19,7 +19,7 @@ export default {
       name: 'home',
       computed: {
             welcome() {
-                return 'welcome :)'
+                return this.$store.getters.welcome;
             }
         }
   }
