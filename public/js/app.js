@@ -11497,6 +11497,13 @@ router.beforeEach(function (to, from, next) {
   }
 });
 
+axios.interceptors.response.use(null, function (error) {
+  if (error.response.status == 401) {
+    store.commit("logout");
+    router.push("/login");
+  }
+});
+
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
   router: router,
@@ -51051,7 +51058,7 @@ exports = module.exports = __webpack_require__(49)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.error {\r\n    text-align: center;\r\n    color: red;\n}\r\n", ""]);
 
 // exports
 
@@ -51438,6 +51445,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -51465,6 +51477,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (error) {
         _this.$store.commit("loginFailed", { error: error });
       });
+    }
+  },
+  computed: {
+    authError: function authError() {
+      return this.$store.getters.authError;
     }
   }
 });
@@ -51576,7 +51593,19 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _vm._m(0),
+              _vm._v(" "),
+              _vm.authError
+                ? _c("div", { staticClass: "form-group row" }, [
+                    _c("p", { staticClass: "error" }, [
+                      _vm._v(
+                        "\n                  " +
+                          _vm._s(_vm.authError) +
+                          "\n              "
+                      )
+                    ])
+                  ])
+                : _vm._e()
             ]
           )
         ])
