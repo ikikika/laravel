@@ -51628,6 +51628,9 @@ var user = Object(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a" /* getLocalUse
     isLoggedIn: function isLoggedIn(state) {
       return state.isLoggedIn;
     },
+    currentUser: function currentUser(state) {
+      return state.currentUser;
+    },
     authError: function authError(state) {
       return state.auth_error;
     },
@@ -51802,9 +51805,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'app-header'
+  name: 'app-header',
+  methods: {
+    logout: function logout() {
+      this.$store.commit("logout");
+      this.$router.push("login");
+    }
+  },
+  computed: {
+    currentUser: function currentUser() {
+      return this.$store.getters.currentUser;
+    }
+  }
 });
 
 /***/ }),
@@ -51831,10 +51868,119 @@ var render = function() {
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
-          _c("div", {
-            staticClass: "collapse navbar-collapse",
-            attrs: { id: "navbarSupportedContent" }
-          })
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navbarSupportedContent" }
+            },
+            [
+              _c(
+                "ul",
+                { staticClass: "navbar-nav ml-auto" },
+                [
+                  !_vm.currentUser
+                    ? [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: { to: "/login" }
+                              },
+                              [_vm._v("Login")]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: { to: "/register" }
+                              },
+                              [_vm._v("Register")]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    : [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: { to: "/customers" }
+                              },
+                              [_vm._v("Customers")]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "nav-item dropdown" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link dropdown-toggle",
+                              attrs: {
+                                id: "navbarDropdown",
+                                href: "#",
+                                role: "button",
+                                "data-toggle": "dropdown",
+                                "aria-expanded": "false",
+                                "aria-haspopup": "true"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                      " +
+                                  _vm._s(_vm.currentUser.name) +
+                                  " "
+                              ),
+                              _c("span", { staticClass: "caret" })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { "aria-labelledby": "navbarDropdown" }
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#!" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.logout($event)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Logout")]
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                ],
+                2
+              )
+            ]
+          )
         ],
         1
       )
