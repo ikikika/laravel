@@ -11464,7 +11464,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_MainApp_vue__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_MainApp_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_MainApp_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_general__ = __webpack_require__(66);
 __webpack_require__(13);
+
 
 
 
@@ -11482,27 +11484,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
   mode: 'history'
 });
 
-router.beforeEach(function (to, from, next) {
-  var requiresAuth = to.matched.some(function (record) {
-    return record.meta.requiresAuth;
-  });
-  var currentUser = store.state.currentUser;
-
-  if (requiresAuth && !currentUser) {
-    next('/login');
-  } else if (to.path == '/login' && currentUser) {
-    next('/');
-  } else {
-    next();
-  }
-});
-
-axios.interceptors.response.use(null, function (error) {
-  if (error.response.status == 401) {
-    store.commit("logout");
-    router.push("/login");
-  }
-});
+Object(__WEBPACK_IMPORTED_MODULE_6__helpers_general__["a" /* initialize */])(store, router);
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
@@ -52081,6 +52063,39 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = initialize;
+function initialize(store, router) {
+  router.beforeEach(function (to, from, next) {
+    var requiresAuth = to.matched.some(function (record) {
+      return record.meta.requiresAuth;
+    });
+    var currentUser = store.state.currentUser;
+
+    if (requiresAuth && !currentUser) {
+      next('/login');
+    } else if (to.path == '/login' && currentUser) {
+      next('/');
+    } else {
+      next();
+    }
+  });
+
+  axios.interceptors.response.use(null, function (error) {
+    if (error.response.status == 401) {
+      store.commit("logout");
+      router.push("/login");
+    }
+  });
+}
 
 /***/ })
 /******/ ]);
