@@ -34,7 +34,7 @@ export const routes = [
             component: NewCustomer
           },
           {
-            path: ':id',
+            path: ':customer_id',
             component: Customer
           },
          ]
