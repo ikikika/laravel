@@ -31,6 +31,9 @@
 <script>
   export default {
     name: 'list',
+    mounted(){
+      this.$store.dispatch('getCustomers');
+    },
     computed: {
       customers() {
         return this.$store.getters.customers;

@@ -51684,12 +51684,24 @@ var user = Object(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a" /* getLocalUse
       localStorage.removeItem("user");
       state.isLoggedIn = false;
       state.currentUser = null;
+    },
+    updateCustomers: function updateCustomers(state, payload) {
+      state.customers = payload;
     }
   },
 
   actions: {
     login: function login(context) {
       context.commit("login");
+    },
+    getCustomers: function getCustomers(context) {
+      axios.get('/api/customers', {
+        headers: {
+          "Authorization": "Bearer " + context.state.currentUser.token
+        }
+      }).then(function (response) {
+        context.commit('updateCustomers', response.data.customers);
+      });
     }
   }
 });
@@ -52302,6 +52314,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'list',
+  mounted: function mounted() {
+    this.$store.dispatch('getCustomers');
+  },
+
   computed: {
     customers: function customers() {
       return this.$store.getters.customers;
