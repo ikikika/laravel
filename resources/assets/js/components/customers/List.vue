@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="btn-wrapper">
+            <router-link to="/customers/new" class="btn btn-primary btn-sm">New</router-link>
+        </div>
     <table class="table">
       <thead>
         <th>Name</th>
