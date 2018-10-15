@@ -63,10 +63,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // Not recommended to put extra login in create function. Better to do it with protected functions or event listeners.
+
+        $this->sendAcvitationCodeTo($user)->assignRoleTo($user);
+
+        return $user;
+    }
+
+    // Implement extra logic to register controller
+    // - send activation code to user
+    // - assign role to user
+
+    // Send activation code to user
+    protected function sendAcvitationCodeTo($user){
+        \Log::info('activation', ['user' => $user]);
+        return $this;
+    }
+
+    // Assign role to user
+    protected function assignRoleTo($user){
+        \Log::info('role', ['user' => $user]);
+        return $this;
     }
 }
