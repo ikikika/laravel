@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use App\Events\UserRegistered;
+
 class RegisterController extends Controller
 {
     /*
@@ -73,6 +75,10 @@ class RegisterController extends Controller
 
         // Using Protected functions to run extra code
         //$this->sendAcvitationCodeTo($user)->assignRoleTo($user);
+
+
+        // Using event listener to run extra code
+        event(new UserRegistered($user));
 
         return $user;
     }

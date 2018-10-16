@@ -26,6 +26,6 @@ class AssignRole
      */
     public function handle(UserRegistered $event)
     {
-        Log::info('role', ['user' => $event->user]);
+        \Log::info('role', ['user' => $event->user]);
     }
 }
