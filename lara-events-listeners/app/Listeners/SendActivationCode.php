@@ -25,7 +25,7 @@ class SendActivationCode
      * @return void
      */
     public function handle(UserRegistered $event)
-    {
-        //
+    {                                       // Accessing user as defined in UserRegistered
+        \Log::info('activation', ['user' => $event->user]);
     }
 }
