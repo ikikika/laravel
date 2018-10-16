@@ -71,7 +71,8 @@ class RegisterController extends Controller
 
         // Not recommended to put extra login in create function. Better to do it with protected functions or event listeners.
 
-        $this->sendAcvitationCodeTo($user)->assignRoleTo($user);
+        // Using Protected functions to run extra code
+        //$this->sendAcvitationCodeTo($user)->assignRoleTo($user);
 
         return $user;
     }
@@ -80,15 +81,15 @@ class RegisterController extends Controller
     // - send activation code to user
     // - assign role to user
 
-    // Send activation code to user
-    protected function sendAcvitationCodeTo($user){
-        \Log::info('activation', ['user' => $user]);
-        return $this;
-    }
+    // // Send activation code to user
+    // protected function sendAcvitationCodeTo($user){
+    //     \Log::info('activation', ['user' => $user]);
+    //     return $this;
+    // }
 
-    // Assign role to user
-    protected function assignRoleTo($user){
-        \Log::info('role', ['user' => $user]);
-        return $this;
-    }
+    // // Assign role to user
+    // protected function assignRoleTo($user){
+    //     \Log::info('role', ['user' => $user]);
+    //     return $this;
+    // }
 }
