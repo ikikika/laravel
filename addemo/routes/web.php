@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/poll_slides', 'HomeController@poll_slides')->name('poll_slides');
+
+Route::resource('slides', 'SlidesController');
+Route::post('/upload_image', 'SlidesController@upload_image')->name('upload_image');
