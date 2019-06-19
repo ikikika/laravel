@@ -15,8 +15,18 @@ use Illuminate\Http\Request;
 
 Route::post('register', 'UserController@register');
 Route::post('login ', 'UserController@login');
+
 Route::get('profile ', 'UserController@getAuthenticatedUser');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['middleware' => 'auth.jwt'], function () {
+    Route::get('logout', 'UserController@logout');
+    Route::get('products', 'ProductController@index');
+    Route::get('products/{id}', 'ProductController@show');
+    Route::post('products', 'ProductController@store');
+    Route::put('products/{id}', 'ProductController@update');
+    Route::delete('products/{id}', 'ProductController@destroy');
 });

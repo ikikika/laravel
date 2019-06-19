@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Facades\JWTFactory;
 use Tymon\JWTAuth\Exceptions\JWTExceptions;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\JWTManager as JWT;
@@ -44,14 +47,30 @@ class UserController extends Controller
     {
         $credentials = $request->json()->all();
 
+        $validator = Validator::make($credentials, [
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|max:255',
+        ]);
+
+        if( $validator->fails() ){
+            return response()->json($validator->errors()->toJson(), 401);
+        }
+
         try{
             if( !$token = JWTAuth::attempt($credentials) ){
-                return response()->json( ['error'=>'invalid_credentials'], 400);
+                return response()->json( ['error'=>'invalid_credentials'], 402);
             }
         } catch( JWTException $e){
             return response()->json( ['error'=>'could_not_create_token'], 500);
         }
         return response()->json(compact('token'), 201);
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
     }
 
     public function getAuthenticatedUser()
@@ -60,14 +79,13 @@ class UserController extends Controller
             if( !$user = JWTAuth::parseToken()->authenticate() ){
                 return response()->json(['user_not_found'],400);
             }
-        } catch( Tymon\JWTAuth\Exception\TokenExpiredException $e ) {
-            return response()->json(['token_expired'], $e->getStatusCode());
-        } catch( Tymon\JWTAuth\Exception\TokenInvalidException $e ) {
-            return response()->json(['token_invalid '], $e->getStatusCode());
-        } catch( Tymon\JWTAuth\Exception\JWTException $e ) {
-            return response()->json(['token_absent'], $e->getStatusCode());
+        } catch( TokenExpiredException $e ) {
+            return response()->json(['token_expired'], 401);
+        } catch( TokenInvalidException $e ) {
+            return response()->json(['token_invalid '], 400);
+        } catch( JWTException $e ) {
+            return response()->json(['token_absent'], 403);
         }
-
         return response()->json(compact('user'));
     }
 }
