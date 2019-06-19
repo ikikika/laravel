@@ -66,6 +66,13 @@ class UserController extends Controller
         return response()->json(compact('token'), 201);
     }
 
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
     public function getAuthenticatedUser()
     {
         try{
